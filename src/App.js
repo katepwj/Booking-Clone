@@ -11,8 +11,8 @@ function App() {
   return (
 
     < Switch>
-      <Route path="/" component={Home} />
-      <Route path="/hotels" component={List} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/hotels" component={List} />
       <Route path="/hotels/:id" component={Hotel} />
     </Switch>
 

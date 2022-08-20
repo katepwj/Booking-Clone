@@ -1,6 +1,9 @@
 import "./searchItem.css";
+import { Link,withRouter } from "react-router-dom";
 
-const SearchItem = () => {
+
+const SearchItem = (props) => {
+  // console.log(props)
   return (
     <div className="searchItem">
       <img
@@ -9,8 +12,8 @@ const SearchItem = () => {
         className="siImg"
       />
       <div className="siDesc">
-        <h1 className="siTitle">Tower Street Apartments</h1>
-        <span className="siDistance">500m from center</span>
+        <h1 className="siTitle">{props.name}</h1>
+        <span className="siDistance">{props.distance}m from center--{props.city}</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
           Studio Apartment with Air conditioning
@@ -29,13 +32,20 @@ const SearchItem = () => {
           <button>8.9</button>
         </div>
         <div className="siDetailTexts">
-          <span className="siPrice">$112</span>
+          <span className="siPrice">${props.cheapestPrice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <button className="siCheckButton">See availability</button>
+       
+          <Link to={`/hotels/${props._id}`}>
+    
+
+
+            <button className="siCheckButton">See availability</button>
+          </Link>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default SearchItem;
+export default withRouter(SearchItem);

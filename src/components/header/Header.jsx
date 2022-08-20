@@ -17,7 +17,7 @@ import { format } from "date-fns";
 // import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
-  const { type }=props
+  const { type } = props
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
@@ -34,8 +34,6 @@ const Header = (props) => {
     room: 1,
   });
 
-  // const navigate = useNavigate();
-
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -45,14 +43,16 @@ const Header = (props) => {
     });
   };
 
-  // const handleSearch = () => {
-  //   navigate("/hotels", { state: { destination, date, options } });
-  // };
 
   const handleSearch = () => {
-    // navigate("/hotels", { state: { destination, date, options } });
-    props.history.push("/hotels")
+    props.history.push("/hotels", { state: { destination, date, options } })
+
   };
+
+  // console.log(date[0].startDate,date[0].endDate)
+  // console.log(destination)
+  // console.log(date)
+  // console.log(options)
 
   return (
     <div className="header">
