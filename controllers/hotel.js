@@ -48,22 +48,31 @@ export const getHotel = async (req, res, next) => {
       req.params.id,
     )
     res.status(200).json(hotel)
-  } catch (err) {
-    // console.dir(222,next())
-    // res.status(500).json(err)
-    // err.msg="XXXX"
-    // next(createError("500","xxx"))
 
+  } catch (err) {
     next(err)
   }
 }
 
 
 export const getAllHotel = async (req, res, next) => {
-  console.log(req.params.id)
+  console.log(req.query)
+  const { min, max, limit, ...others } = req.query
+  let hotels
   try {
-    const hotels = await Hotel.find()
+    if (!req.query.city) {
+      hotels = await Hotel.find().limit(limit)
+      // console.log(22,hotels)
+    }
+    else {
+      hotels = await Hotel.find({
+        ...others,
+        cheapestPrice: { $gt: min || 1, $lt: max || 99999 }
+      }).limit(limit)
+
+    }
     res.status(200).json(hotels)
+
   } catch (err) {
     next(err)
   }
@@ -82,23 +91,23 @@ export const countByCity = async (req, res, next) => {
 
 export const countByType = async (req, res, next) => {
   try {
-const hotelCount=await Hotel.countDocuments({type:"hotel"})
+    const hotelCount = await Hotel.countDocuments({ type: "hotel" })
 
-const apartmentCount=await Hotel.countDocuments({type:"apartment"})
+    const apartmentCount = await Hotel.countDocuments({ type: "apartment" })
 
-const resortCount=await Hotel.countDocuments({type:"resort"})
+    const resortCount = await Hotel.countDocuments({ type: "resort" })
 
-const villasCount=await Hotel.countDocuments({type:"villas"})
+    const villasCount = await Hotel.countDocuments({ type: "villas" })
 
-const cabinsCount=await Hotel.countDocuments({type:"cabins"})
+    const cabinsCount = await Hotel.countDocuments({ type: "cabins" })
 
-res.status(200).json([
-  {type:"hotel",count:hotelCount,img:"https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="},
-  {type:"apartment",count:apartmentCount,img:"https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg"},
-  {type:"resort",count:resortCount,img:"https://cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_resorts/6f87c6143fbd51a0bb5d15ca3b9cf84211ab0884.jpg"},
-  {type:"villas",count:villasCount,img:"https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg"},
-  {type:"cabins",count:cabinsCount,img:"https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg"},
-])
+    res.status(200).json([
+      { type: "hotel", count: hotelCount, img: "https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=" },
+      { type: "apartment", count: apartmentCount, img: "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg" },
+      { type: "resort", count: resortCount, img: "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_resorts/6f87c6143fbd51a0bb5d15ca3b9cf84211ab0884.jpg" },
+      { type: "villas", count: villasCount, img: "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg" },
+      { type: "cabins", count: cabinsCount, img: "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg" },
+    ])
 
   } catch (err) {
     next(err)
