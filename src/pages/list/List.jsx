@@ -9,7 +9,7 @@ import useFetch from '../../hooks/useFetch'
 
 const List = (props) => {
 
-  console.log(props.location.state.state)
+  // console.log(props.location.state.state)
   const [destination, setDestination] = useState(props.location.state.state.destination);
   const [date, setDate] = useState(props.location.state.state.date);
   const [openDate, setOpenDate] = useState(false);
@@ -21,7 +21,7 @@ const List = (props) => {
   const { data, loading, error, reFetch } = useFetch(`http://localhost:8800/hotels/?city=${destination}&min=${min}&max=${max}`)
 
 
-
+  // console.log("lists",data)
 
   return (
     <div>
@@ -113,9 +113,7 @@ const List = (props) => {
                   />
                 )
               }
-
               )
-
             }
           </div>
         </div>

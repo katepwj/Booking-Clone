@@ -7,14 +7,17 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <Link exact="true" to="/"
-          style={{ color: "white", textDecoration: "none" }}>
+        <Link
+          exact="true"
+          to="/"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           <span className="logo">Booking</span>
         </Link>
 
         <div className="navItems">
-          <button className="navButton">Register</button>
-          <button className="navButton">Login</button>
+          <Link className="navButton" to="/register">Register</Link>
+          <Link className="navButton" to="/login">Login</Link>
         </div>
       </div>
     </div>
