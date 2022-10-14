@@ -10,8 +10,6 @@ const initialState = {
 console.log("authReducer.js")
 
 
-// console.log(JSON.parse(localStorage.getItem("user")),initialState.user)
-
 const authReducer = (state = initialState, action) => {
 
    switch (action.type) {

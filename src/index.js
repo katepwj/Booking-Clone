@@ -11,7 +11,7 @@ const myStore = createStore(allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-console.log("index.js")
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

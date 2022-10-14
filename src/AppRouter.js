@@ -26,10 +26,10 @@ function AppRouter() {
       <Route exact path="/" component={Home} />
       <Route exact path="/hotels" component={List} />
       <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
+      {/* <Route path="/register" component={Register} /> */}
 
 
-      <Route path="/hotels/:id" component={Hotel} />
+      <Route path="/hotel/:id" component={Hotel} />
     </Switch>
 
   );

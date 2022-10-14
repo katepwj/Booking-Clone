@@ -14,7 +14,7 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-// import { useNavigate } from "react-router-dom";
+
 
 const Header = (props) => {
   const { type } = props
@@ -45,14 +45,11 @@ const Header = (props) => {
 
 
   const handleSearch = () => {
-    props.history.push("/hotels", { state: { destination, date, options } })
+    props.history.push("/hotels",  { destination, date, options })
 
   };
 
-  // console.log(date[0].startDate,date[0].endDate)
-  // console.log(destination)
-  // console.log(date)
-  // console.log(options)
+ 
 
   return (
     <div className="header">

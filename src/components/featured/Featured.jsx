@@ -1,5 +1,6 @@
 import useFetch from "../../hooks/useFetch";
 import "./featured.css";
+import { Link, withRouter } from "react-router-dom";
 
 const Featured = () => {
 
@@ -51,4 +52,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default withRouter(Featured);

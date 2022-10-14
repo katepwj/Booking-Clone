@@ -11,6 +11,8 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
+
+  text-decoration: none
 }
 
 .fpImg{
