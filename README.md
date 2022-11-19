@@ -1,4 +1,4 @@
 # BookingClone1
-front-end code:client branch;
+front-end code : client branch;
 
-back-end code:service branch; 
+back-end code : server branch; 
